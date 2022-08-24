@@ -1,3 +1,4 @@
+
 from turtle import width
 from unicodedata import category
 import matplotlib.pyplot as plt
@@ -1380,8 +1381,8 @@ def main_sign_in():
         r1 = 5
         x1 = dwidth/26
         x2 = dwidth/1.045
-        y1 = dheight/1
-        y2 = dheight/1.58    #bg_polygen_pr3     
+        y1 = dheight/0.58
+        y2 = dheight/1.58  #bg_polygen_pr3     
 
         dcanvas.coords("bg_polygen_pr3",x1 + r1,y1,
         x1 + r1,y1,
@@ -1407,16 +1408,19 @@ def main_sign_in():
         x1,y1 + r1,
         x1,y1,
         )        
-        dcanvas.coords("nb",dwidth/10,dheight/1.60,)
+        dcanvas.coords("nb",dwidth/26,dheight/1.60,)
+        dcanvas.coords("my_tree",dwidth/25,dheight/1.48,)
+        dcanvas.coords("my_tree2",dwidth/25,dheight/1.48,)
+        
 
-        # bg_polygen_pr4 start 
+    # bg_polygen_pr4 start 
         r1 = 25
         x1 = dwidth/63
         x2 = dwidth/1.021
         y1 = dheight/13
         y2 = dheight/4 
 
-        dcanvas.coords("bg_polygen_pr4",x1 + r1,y1,
+        dcanvas.coords("bg_polygen_pr4",x1 +r1,y1,
         x1 + r1,y1,
         x2 - r1,y1,
         x2 - r1,y1,     
@@ -1439,81 +1443,111 @@ def main_sign_in():
         x1,y1 + r1,
         x1,y1 + r1,
         x1,y1,
-        )        
+        ) 
         dcanvas.coords("add_new_tax_lbl",dwidth/2.3,dheight/9,)
 
+   
+
+    gst_canvas = Canvas(gs,height=700,bg="#386491",scrollregion=(0,0,700,1200))
+    gst_sr_Scroll = Scrollbar(gs,orient=VERTICAL)
+    gst_sr_Scroll.pack(fill=Y,side="right")
+    gst_sr_Scroll.config(command=gst_canvas.yview)
+    gst_canvas.bind("<Configure>", responsive_wid)
+    gst_canvas.config(yscrollcommand=gst_sr_Scroll.set)
+    gst_canvas.pack(fill=X)
+    gst_canvas.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, fill="#213b52",tags=("bg_polygen_pr"),smooth=True,)
+    gslb1=Label(gst_canvas, text="GST",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
+    
+
+    # addtxbtn function start 
     def addtx():
         print("function work") 
-        canvas.pack_forget()
-        sr_Scroll.pack_forget()
-        new_canvas2 = Canvas(gs,height=700,bg="#2f516f",scrollregion=(0,0,700,1200))
-        sr_Scroll2 = Scrollbar(newfr,orient=VERTICAL)
-        sr_Scroll2.pack(fill=Y,side="right")
-        sr_Scroll2.config(command=new_canvas2.yview)
-        new_canvas2.bind("<Configure>", responsive_wid)
-        new_canvas2.config(yscrollcommand=sr_Scroll2.set)
-        new_canvas2.pack(fill=X)
-        new_canvas2.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, fill="#213b52",tags=("bg_polygen_pr4"),smooth=True,)
-        add_new_tax_lbl=Label(new_canvas2, text="ADD NEW TAX",bg="#213b52", fg="White", anchor="nw",font=('Calibri 25 bold'))
-        add_new_tax_lbl_place=new_canvas2.create_window(0, 0, anchor="nw", window=add_new_tax_lbl, tag=("add_new_tax_lbl"))
+        gst_canvas.pack_forget()
+        gst_sr_Scroll.pack_forget()
+        new_canvas3 = Canvas(gs,height=700,bg="#2f516f",scrollregion=(0,0,700,1200))
+        sr_Scroll3 = Scrollbar(gs,orient=VERTICAL)
+        sr_Scroll3.pack(fill=Y,side="right")
+        sr_Scroll3.config(command=new_canvas3.yview)
+        new_canvas3.bind("<Configure>", responsive_wid)
+        new_canvas3.config(yscrollcommand=sr_Scroll3.set)
+       
+        new_canvas3.pack(fill=X)
+        new_canvas3.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, fill="#213b52",tags=("tax_bg_polygen_pr3"),smooth=True,)
+        # new_canvas3.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, fill="#213b52",tags=("bg_polygen_pr4"),smooth=True,)
+        add_new_tax_lbl=Label(new_canvas3, text="ADD NEW TAX",bg="#213b52", fg="White", anchor="nw",font=('Calibri 25 bold'))
+        add_new_tax_lbl_place=new_canvas3.create_window(0, 0, anchor="nw", window=add_new_tax_lbl, tag=("add_new_tax_lbl"))
+        new_canvas3.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, fill="#213b52",tags=("tax_bg_polygen_pr4"),smooth=True,)
+        tax_nme_lbl=Label(new_canvas3, text="Tax Name",bg="#213b52", fg="White", anchor="nw",font=('Calibri 14 bold'))
+        tax_nme_lbl_place=new_canvas3.create_window(0, 0, anchor="nw", window=tax_nme_lbl, tag=("tax_nme_lbl"))
 
-    canvas = Canvas(gs,height=700,bg="#386491",scrollregion=(0,0,700,1200))
-    
-    sr_Scroll = Scrollbar(gs,orient=VERTICAL)
-    sr_Scroll.pack(fill=Y,side="right")
-    sr_Scroll.config(command=canvas.yview)
-    canvas.bind("<Configure>", responsive_wid)
-    canvas.config(yscrollcommand=sr_Scroll.set)
-    canvas.pack(fill=X)
-    canvas.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, fill="#213b52",tags=("bg_polygen_pr"),smooth=True,)
-    gslb1=Label(canvas, text="GST",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
-    
+        tax_nme_entry=Entry(new_canvas3,width=30,font=('Calibri 14 '))
+        tax_nme_entry_place=new_canvas3.create_window(0, 0, anchor="nw", window=tax_nme_entry, tag=("tax_nme_entry"))
+
+        description_lbl=Label(new_canvas3, text="Description",bg="#213b52", fg="White", anchor="nw",font=('Calibri 14 bold'))
+        description_lbl_place=new_canvas3.create_window(0, 0, anchor="nw", window=description_lbl, tag=("description_lbl"))
+
+        description_lbl_entry=Entry(new_canvas3,width=21,font=('Calibri 20 '))
+        description_lbl_entry_place=new_canvas3.create_window(0, 0, anchor="nw", window=description_lbl_entry, tag=("description_lbl_entry"))
+
+        save_btn=Button(new_canvas3,text="Save",bg="#213b52",fg='white',width=25,)
+        save_btn_place=new_canvas3.create_window(0, 0, anchor="nw", window=save_btn, tag=("save_btn"))
+
+        img_tax=ImageTk.PhotoImage(Image.open("TAX.PNG"))
+        img_label=Label(new_canvas3,image=img_tax,width=300,height=300,)
+        img_lbl_entry_place=new_canvas3.create_window(0, 0, anchor="nw", window=img_label, tag=("img_label"))
     #Addtx button
-    addtxbtn=Button(canvas,text="Add tax",bg="#213b52",fg='white',width=10,command=addtx)
-    win_inv1 = canvas.create_window(0, 0, anchor="nw", window=gslb1, tag=("gslb1"))
-    addtx_place=canvas.create_window(0,0,anchor='nw',window=addtxbtn,tag=("addtxbtn"))
+    addtxbtn=Button(gst_canvas,text="Add tax",bg="#213b52",fg='white',width=10,command=addtx)
+    win_inv1 = gst_canvas.create_window(0, 0, anchor="nw", window=gslb1, tag=("gslb1"))
+    addtx_place=gst_canvas.create_window(0,0,anchor='nw',window=addtxbtn,tag=("addtxbtn"))
     
     #second canvas
-    canvas.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, fill="#213b52",tags=("bg_polygen_pr2"),smooth=True,) 
-    val=Label(canvas, text="0.0",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
-    date_lbl= Label(canvas, text="Fri Apr 01 2022 - Sat Apr 30 2022",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold')) 
-    igst_val=Label(canvas, text="0.0",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
-    cgst_val=Label(canvas, text="0.0",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
-    sgst_val=Label(canvas, text="0.0",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
+    gst_canvas.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, fill="#213b52",tags=("bg_polygen_pr2"),smooth=True,) 
+    val=Label(gst_canvas, text="0.0",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
+    date_lbl= Label(gst_canvas, text="Fri Apr 01 2022 - Sat Apr 30 2022",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold')) 
+    igst_val=Label(gst_canvas, text="0.0",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
+    cgst_val=Label(gst_canvas, text="0.0",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
+    sgst_val=Label(gst_canvas, text="0.0",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
 
-    igst=Label(canvas, text="IGST",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
-    igst_plus_sym=Label(canvas, text="+",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
-    cgst=Label(canvas, text="CGST",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
-    cgst_plus_sym=Label(canvas, text="+",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
-    sgst=Label(canvas, text="SGST",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
-    total=Label(canvas, text="₹0.0",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
-    payable_total=Label(canvas, text="PAYABLE BALANCE",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
+    igst=Label(gst_canvas, text="IGST",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
+    igst_plus_sym=Label(gst_canvas, text="+",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
+    cgst=Label(gst_canvas, text="CGST",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
+    cgst_plus_sym=Label(gst_canvas, text="+",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
+    sgst=Label(gst_canvas, text="SGST",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
+    total=Label(gst_canvas, text="₹0.0",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
+    payable_total=Label(gst_canvas, text="PAYABLE BALANCE",bg="#213b52", fg="White", anchor="nw",font=('Calibri 16 bold'))
     
     # Return payment history tab menu 
-    nb=ttk.Notebook(canvas,)
+    s = ttk.Style()
+    s.theme_use('default')
+    s.configure('TNotebook.Tab', background="#213b52",foreground="white", width=95,anchor="center", padding=5)
+    s.map('TNotebook.Tab',background=[("selected","#2f516f")])
+    nb=ttk.Notebook(gst_canvas,)
+
     
-    f1=Frame(nb,bg="#386491",width=300,height=200)
-    f2=Frame(nb,bg="#386491",width=300,height=200)
+    f1=Frame(gst_canvas,bg="#386491",width=10,)
+    f2=Frame(gst_canvas,bg="#386491",width=10,)
     
-    nb.add(f2,text="Payment history")
-    nb.add(f1,text="Returns")
+    nb.add(f1,text="Payment history")
+    nb.add(f2,text="Returns")
 
     #Returns tab
-    my_tree=ttk.Treeview(f1)
+    my_tree=ttk.Treeview(gst_canvas)
     
     # DEFINE COLUMN 
     my_tree['columns']=('STARTDATE','END DATE','PAYMENT DUE','ANNUAL DUE','PAYMENTS','BALANCE','STATUS')
 
     #format our columns
+    #format our columns
     my_tree.column("#0",width=0,stretch=NO)
-    my_tree.column("STARTDATE",anchor=CENTER,width=120,)
-    my_tree.column('END DATE',anchor=CENTER,width=120)
-    my_tree.column('PAYMENT DUE',anchor=CENTER,width=125)
-    my_tree.column('ANNUAL DUE',anchor=CENTER,width=125)
-    my_tree.column('PAYMENTS',anchor=CENTER,width=125)
-    my_tree.column('BALANCE',anchor=CENTER,width=125)
-    my_tree.column('STATUS',anchor=CENTER,width=125)
+    my_tree.column("STARTDATE",anchor=CENTER,width=175,)
+    my_tree.column('END DATE',anchor=CENTER,width=175)
+    my_tree.column('PAYMENT DUE',anchor=CENTER,width=175)
+    my_tree.column('ANNUAL DUE',anchor=CENTER,width=175)
+    my_tree.column('PAYMENTS',anchor=CENTER,width=175)
+    my_tree.column('BALANCE',anchor=CENTER,width=175)
+    my_tree.column('STATUS',anchor=CENTER,width=175)
 
+    # create heading 
     #Create Heading
     my_tree.heading("#0",text='',anchor=CENTER)
     my_tree.heading('STARTDATE',text='STARTDATE',anchor=CENTER)
@@ -1523,28 +1557,54 @@ def main_sign_in():
     my_tree.heading('PAYMENTS',text='PAYMENTS',anchor=CENTER)
     my_tree.heading('BALANCE',text='BALANCE',anchor=CENTER)
     my_tree.heading('STATUS',text='STATUS',anchor=CENTER)
-
+    
+    # insert date 
     #Insert data
     my_tree.insert(parent='',index='end',iid=0,text='',values=('Fri Apr 01 2022','Sat Apr 30 2022','','₹0.0','₹ 0.0','₹ 0.0','open'))
-    
 
-    val_place=canvas.create_window(0,0,anchor='nw', window=val,tag=('val'))
-    date_lbl_place=canvas.create_window(0,0,anchor='nw', window=date_lbl,tag=('date_lbl'))
-    igst_val_place=canvas.create_window(0,0,anchor='nw', window=igst_val,tag=('igst_val'))
-    cgst_val_place=canvas.create_window(0,0,anchor='nw', window=cgst_val,tag=('cgst_val'))
-    sgst_val_place=canvas.create_window(0,0,anchor='nw', window=sgst_val,tag=('sgst_val'))
-    total_val_place=canvas.create_window(0,0,anchor='nw', window=total,tag=('total'))
 
-    igst_place=canvas.create_window(0,0,anchor='nw', window=igst,tag=('igst'))
-    igst_plus_sym_place=canvas.create_window(0,0,anchor='nw', window=igst_plus_sym,tag=('igst_plus_sym'))
-    cgst_place=canvas.create_window(0,0,anchor='nw', window=cgst,tag=('cgst'))
-    cgst_plus_sym_place=canvas.create_window(0,0,anchor='nw', window=cgst_plus_sym,tag=('cgst_plus_sym'))
-    sgst_place=canvas.create_window(0,0,anchor='nw', window=sgst,tag=('sgst'))
-    payable_place=canvas.create_window(0,0,anchor='nw', window=payable_total,tag=('payable_total'))
+     # payment history tab
+    my_tree2=ttk.Treeview(gst_canvas)
+        # DEFINE COLUMN 
+    my_tree2['columns']=('DATE','TYPE','TAX PERIOD','AMOUNT','MEMO',)
+
+    #format our columns
+    my_tree2.column("#0",width=0,stretch=NO)
+    my_tree2.column("DATE",anchor=CENTER,width=175,)
+    my_tree2.column('TYPE',anchor=CENTER,width=175)
+    my_tree2.column('TAX PERIOD',anchor=CENTER,width=175)
+    my_tree2.column('AMOUNT',anchor=CENTER,width=175)
+    my_tree2.column('MEMO',anchor=CENTER,width=175)
+
+         #Create Heading
+    my_tree2.heading("#0",text='',anchor=CENTER)
+    my_tree2.heading('DATE',text='DATE',anchor=CENTER)
+    my_tree2.heading('TYPE',text='TYPE',anchor=CENTER)
+    my_tree2.heading('TAX PERIOD',text='TAX PERIOD',anchor=CENTER)
+    my_tree2.heading('AMOUNT',text='AMOUNT',anchor=CENTER)
+    my_tree2.heading('MEMO',text='MEMO',anchor=CENTER)
+
+
+    my_tree_place=gst_canvas.create_window(0,0,anchor='nw', window=my_tree,tag=('my_tree'))
+    my_tree2_place=gst_canvas.create_window(0,0,anchor='nw', window=my_tree2,tag=('my_tree2'))
+    val_place=gst_canvas.create_window(0,0,anchor='nw', window=val,tag=('val'))
+    date_lbl_place=gst_canvas.create_window(0,0,anchor='nw', window=date_lbl,tag=('date_lbl'))
+    igst_val_place=gst_canvas.create_window(0,0,anchor='nw', window=igst_val,tag=('igst_val'))
+    cgst_val_place=gst_canvas.create_window(0,0,anchor='nw', window=cgst_val,tag=('cgst_val'))
+    sgst_val_place=gst_canvas.create_window(0,0,anchor='nw', window=sgst_val,tag=('sgst_val'))
+    total_val_place=gst_canvas.create_window(0,0,anchor='nw', window=total,tag=('total'))
+
+    igst_place=gst_canvas.create_window(0,0,anchor='nw', window=igst,tag=('igst'))
+    igst_plus_sym_place=gst_canvas.create_window(0,0,anchor='nw', window=igst_plus_sym,tag=('igst_plus_sym'))
+    cgst_place=gst_canvas.create_window(0,0,anchor='nw', window=cgst,tag=('cgst'))
+    cgst_plus_sym_place=gst_canvas.create_window(0,0,anchor='nw', window=cgst_plus_sym,tag=('cgst_plus_sym'))
+    sgst_place=gst_canvas.create_window(0,0,anchor='nw', window=sgst,tag=('sgst'))
+    payable_place=gst_canvas.create_window(0,0,anchor='nw', window=payable_total,tag=('payable_total'))
     
     #subpolygon
-    canvas.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, fill="#386491",tags=("bg_polygen_pr3"),smooth=True,)
-    nb_place=canvas.create_window(0,0,anchor='nw', window=nb,tag=('nb'))
+    gst_canvas.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, fill="#386491",tags=("bg_polygen_pr3"),smooth=True,)
+    nb_place=gst_canvas.create_window(0,0,anchor='nw', window=nb,tag=('nb'))
+ 
      
 
      # New Categary tab frame start 
@@ -1692,6 +1752,7 @@ def main_sign_in():
         dcanvas.coords("tax_nme_entry",dwidth/2.3,dheight/1.7,)
         dcanvas.coords("description_lbl",dwidth/2.3,dheight/1.5,)
         dcanvas.coords("description_lbl_entry",dwidth/2.3,dheight/1.3,)
+        dcanvas.coords("save_btn",dwidth/2.3,dheight/1.1,)
         dcanvas.coords("img_label",dwidth/6.5,dheight/2.5,)
     #333333333333333333333333333333333333333333333333333333333333333333333333333333333333333{Accounting}
 
@@ -1738,6 +1799,9 @@ def main_sign_in():
 
         description_lbl_entry=Entry(new_canvas2,width=21,font=('Calibri 20 '))
         description_lbl_entry_place=new_canvas2.create_window(0, 0, anchor="nw", window=description_lbl_entry, tag=("description_lbl_entry"))
+
+        save_btn=Button(new_canvas,text="Save",bg="#213b52",fg='white',width=25,)
+        save_btn_place=new_canvas2.create_window(0, 0, anchor="nw", window=save_btn, tag=("save_btn"))
 
         img_tax=ImageTk.PhotoImage(Image.open("TAX.PNG"))
         img_label=Label(new_canvas2,image=img_tax,width=300,height=300,)
