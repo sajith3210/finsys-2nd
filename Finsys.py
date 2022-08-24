@@ -13,7 +13,7 @@ from sqlite3 import enable_callback_tracebacks
 from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
-from textwrap import wrap
+from textwrap import fill, wrap
 from tkinter import font
 from tkinter.font import BOLD
 from urllib.parse import parse_qs
@@ -1446,6 +1446,44 @@ def main_sign_in():
         ) 
         dcanvas.coords("add_new_tax_lbl",dwidth/2.3,dheight/9,)
 
+#  tax_bg_polygen_pr3 start 
+        # r1 = 25
+        # x1 = dwidth/63
+        # x2 = dwidth/1.021
+        # y1 = dheight/13
+        # y2 = dheight/4 
+
+        r1 = 25
+        x1 = dwidth/63
+        x2 = dwidth/1.021
+        y1 = dheight/13
+        y2 = dheight/6            #bg_polygen_pr
+
+        dcanvas.coords("rcd_polygen_pr",x1 +r1,y1,
+        x1 + r1,y1,
+        x2 - r1,y1,
+        x2 - r1,y1,     
+        x2,y1,     
+        #--------------------
+        x2,y1 + r1,     
+        x2,y1 + r1,     
+        x2,y2 - r1,     
+        x2,y2 - r1,     
+        x2,y2,
+        #--------------------
+        x2 - r1,y2,     
+        x2 - r1,y2,     
+        x1 + r1,y2,
+        x1 + r1,y2,
+        x1,y2,
+        #--------------------
+        x1,y2 - r1,
+        x1,y2 - r1,
+        x1,y1 + r1,
+        x1,y1 + r1,
+        x1,y1,
+        )          
+        dcanvas.coords("record_pay_lbl",dwidth/2.3,dheight/1,)
    
 
     gst_canvas = Canvas(gs,height=700,bg="#386491",scrollregion=(0,0,700,1200))
@@ -1519,19 +1557,19 @@ def main_sign_in():
     # Return payment history tab menu 
     s = ttk.Style()
     s.theme_use('default')
-    s.configure('TNotebook.Tab', background="#213b52",foreground="white", width=95,anchor="center", padding=5)
+    s.configure('TNotebook.Tab', background="#213b52",foreground="white",anchor="center", padding=5)
     s.map('TNotebook.Tab',background=[("selected","#2f516f")])
     nb=ttk.Notebook(gst_canvas,)
 
     
-    f1=Frame(gst_canvas,bg="#386491",width=10,)
-    f2=Frame(gst_canvas,bg="#386491",width=10,)
+    f1=Frame(gst_canvas,bg="red",width=400,height=1500)   #386491
+    f2=Frame(gst_canvas,bg="red",width=400,height=1500)
     
     nb.add(f1,text="Payment history")
     nb.add(f2,text="Returns")
 
     #Returns tab
-    my_tree=ttk.Treeview(gst_canvas)
+    my_tree=ttk.Treeview(f1)
     
     # DEFINE COLUMN 
     my_tree['columns']=('STARTDATE','END DATE','PAYMENT DUE','ANNUAL DUE','PAYMENTS','BALANCE','STATUS')
@@ -1564,7 +1602,7 @@ def main_sign_in():
 
 
      # payment history tab
-    my_tree2=ttk.Treeview(gst_canvas)
+    my_tree2=ttk.Treeview(f2)
         # DEFINE COLUMN 
     my_tree2['columns']=('DATE','TYPE','TAX PERIOD','AMOUNT','MEMO',)
 
@@ -1584,9 +1622,28 @@ def main_sign_in():
     my_tree2.heading('AMOUNT',text='AMOUNT',anchor=CENTER)
     my_tree2.heading('MEMO',text='MEMO',anchor=CENTER)
 
-
-    my_tree_place=gst_canvas.create_window(0,0,anchor='nw', window=my_tree,tag=('my_tree'))
-    my_tree2_place=gst_canvas.create_window(0,0,anchor='nw', window=my_tree2,tag=('my_tree2'))
+    my_tree.grid(row=0,column=1)
+    my_tree2.grid(row=1,column=1)
+    def rcdpay():
+        print("function work") 
+        gst_canvas.pack_forget()
+        gst_sr_Scroll.pack_forget()
+        new_canvas4= Canvas(gs,height=700,bg="#2f516f",scrollregion=(0,0,700,1200))
+        sr_Scroll4 = Scrollbar(gs,orient=VERTICAL)
+        sr_Scroll4.pack(fill=Y,side="right")
+        sr_Scroll4.config(command=new_canvas4.yview)
+        new_canvas4.bind("<Configure>", responsive_wid)
+        new_canvas4.config(yscrollcommand=sr_Scroll4.set)
+        new_canvas4.pack(fill=X)
+        new_canvas4.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, fill="#213b52",tags=("rcd_polygen_pr"),smooth=True,)
+        record_pay_lbl=Label(new_canvas4, text="ADD NEW TAX",bg="#213b52", fg="White", anchor="nw",font=('Calibri 25 bold'))
+        record_pay_lbl_place=new_canvas4.create_window(0, 0, anchor="nw", window=record_pay_lbl, tag=("record_pay_lbl"))
+    recd_pay=Button(f2,text="Record payment",bg='yellow',command=rcdpay)
+    recd_pay.grid(row=0,column=1, padx=50,pady=0)
+    
+    
+    # my_tree_place=gst_canvas.create_window(0,0,anchor='nw', window=my_tree,tag=('my_tree'))
+    # my_tree2_place=gst_canvas.create_window(0,0,anchor='nw', window=my_tree2,tag=('my_tree2'))
     val_place=gst_canvas.create_window(0,0,anchor='nw', window=val,tag=('val'))
     date_lbl_place=gst_canvas.create_window(0,0,anchor='nw', window=date_lbl,tag=('date_lbl'))
     igst_val_place=gst_canvas.create_window(0,0,anchor='nw', window=igst_val,tag=('igst_val'))
