@@ -1,5 +1,6 @@
 
 from turtle import width
+from tkinter import scrolledtext
 from unicodedata import category
 import matplotlib.pyplot as plt
 import re
@@ -1524,7 +1525,7 @@ def main_sign_in():
         description_lbl=Label(new_canvas3, text="Description",bg="#213b52", fg="White", anchor="nw",font=('Calibri 14 bold'))
         description_lbl_place=new_canvas3.create_window(0, 0, anchor="nw", window=description_lbl, tag=("description_lbl"))
 
-        description_lbl_entry=Entry(new_canvas3,width=21,font=('Calibri 20 '))
+        description_lbl_entry=scrolledtext.ScrolledText(new_canvas3, width = 35, height = 4)
         description_lbl_entry_place=new_canvas3.create_window(0, 0, anchor="nw", window=description_lbl_entry, tag=("description_lbl_entry"))
 
         save_btn=Button(new_canvas3,text="Save",bg="#213b52",fg='white',width=25,)
@@ -1805,12 +1806,12 @@ def main_sign_in():
         x1,y1 + r1,
         x1,y1,
         )
-        dcanvas.coords("tax_nme_lbl",dwidth/2.3,dheight/2,)
+        dcanvas.coords("tax_nme_lbl",dwidth/2.3,dheight/1.9,)
         dcanvas.coords("tax_nme_entry",dwidth/2.3,dheight/1.7,)
         dcanvas.coords("description_lbl",dwidth/2.3,dheight/1.5,)
-        dcanvas.coords("description_lbl_entry",dwidth/2.3,dheight/1.3,)
-        dcanvas.coords("save_btn",dwidth/2.3,dheight/1.1,)
-        dcanvas.coords("img_label",dwidth/6.5,dheight/2.5,)
+        dcanvas.coords("description_lbl_entry",dwidth/2.3,dheight/1.4,)
+        dcanvas.coords("save_btn",dwidth/2.3,dheight/1.2,)
+        dcanvas.coords("img_label",dwidth/26,dheight/2.5,)
     #333333333333333333333333333333333333333333333333333333333333333333333333333333333333333{Accounting}
 
 
@@ -1854,14 +1855,20 @@ def main_sign_in():
         description_lbl=Label(new_canvas2, text="Description",bg="#213b52", fg="White", anchor="nw",font=('Calibri 14 bold'))
         description_lbl_place=new_canvas2.create_window(0, 0, anchor="nw", window=description_lbl, tag=("description_lbl"))
 
-        description_lbl_entry=Entry(new_canvas2,width=21,font=('Calibri 20 '))
+        description_lbl_entry=scrolledtext.ScrolledText(new_canvas2, width = 35, height = 4)
         description_lbl_entry_place=new_canvas2.create_window(0, 0, anchor="nw", window=description_lbl_entry, tag=("description_lbl_entry"))
-
-        save_btn=Button(new_canvas,text="Save",bg="#213b52",fg='white',width=25,)
+        
+        save_btn=Button(new_canvas2,text="Save",bg="#213b52",fg='white',width=25,)
         save_btn_place=new_canvas2.create_window(0, 0, anchor="nw", window=save_btn, tag=("save_btn"))
 
-        img_tax=ImageTk.PhotoImage(Image.open("TAX.PNG"))
-        img_label=Label(new_canvas2,image=img_tax,width=300,height=300,)
+        # img_tax=ImageTk.PhotoImage(Image.open("TAX.PNG"))
+        # img_label=Label(new_canvas2,image=img_tax,width=300,height=300,)
+        # img_lbl_entry_place=new_canvas2.create_window(0, 0, anchor="nw", window=img_label, tag=("img_label"))
+        my_pic=Image.open("TAX.png")
+        resize=my_pic.resize((490,330),Image.ANTIALIAS)
+        photo = ImageTk.PhotoImage(resize)
+        img_label = Label(new_canvas2, image=photo,)
+        img_label.photo = photo
         img_lbl_entry_place=new_canvas2.create_window(0, 0, anchor="nw", window=img_label, tag=("img_label"))
     # add tax button 
     addtxbutton2=Button(new_canvas,text="Add tax",bg="#213b52",fg='white',width=25,command=addtxpg)
