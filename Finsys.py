@@ -1,5 +1,6 @@
 
 from turtle import width
+from tkcalendar import DateEntry
 from tkinter import scrolledtext
 from unicodedata import category
 import matplotlib.pyplot as plt
@@ -1615,62 +1616,79 @@ def main_sign_in():
             y1 = dheight/13
             y2 = dheight/4           
 
-            dcanvas.coords("rcd_polygen_pr",x1 +r1,y1,
-            x1 + r1,y1,
-            x2 - r1,y1,
-            x2 - r1,y1,     
-            x2,y1,     
-            #--------------------
-            x2,y1 + r1,     
-            x2,y1 + r1,     
-            x2,y2 - r1,     
-            x2,y2 - r1,     
-            x2,y2,
-            #--------------------
-            x2 - r1,y2,     
-            x2 - r1,y2,     
-            x1 + r1,y2,
-            x1 + r1,y2,
-            x1,y2,
-            #--------------------
-            x1,y2 - r1,
-            x1,y2 - r1,
-            x1,y1 + r1,
-            x1,y1 + r1,
-            x1,y1,
-            )  
-            dcanvas.coords("record_pa_lbl",dwidth/2.3,dheight/9,)
-             # rcd polygon pr 2 start 
-            r1 = 25
-            x1 = dwidth/63
-            x2 = dwidth/1.021
-            y1 = dheight/3.4
-            y2 = dheight/0.79           
+            try:
+                dcanvas.coords("rcd_polygen_pr",x1 +r1,y1,
+                x1 + r1,y1,
+                x2 - r1,y1,
+                x2 - r1,y1,     
+                x2,y1,     
+                #--------------------
+                x2,y1 + r1,     
+                x2,y1 + r1,     
+                x2,y2 - r1,     
+                x2,y2 - r1,     
+                x2,y2,
+                #--------------------
+                x2 - r1,y2,     
+                x2 - r1,y2,     
+                x1 + r1,y2,
+                x1 + r1,y2,
+                x1,y2,
+                #--------------------
+                x1,y2 - r1,
+                x1,y2 - r1,
+                x1,y1 + r1,
+                x1,y1 + r1,
+                x1,y1,
+                )  
+                dcanvas.coords("record_pa_lbl",dwidth/2.3,dheight/9,)
+                
+                # rcd polygon pr 2 start 
+                r1 = 25
+                x1 = dwidth/63
+                x2 = dwidth/1.021
+                y1 = dheight/3.4
+                y2 = dheight/0.79           
 
-            dcanvas.coords("rcd_polygen_pr2",x1 +r1,y1,
-            x1 + r1,y1,
-            x2 - r1,y1,
-            x2 - r1,y1,     
-            x2,y1,     
-            #--------------------
-            x2,y1 + r1,     
-            x2,y1 + r1,     
-            x2,y2 - r1,     
-            x2,y2 - r1,     
-            x2,y2,
-            #--------------------
-            x2 - r1,y2,     
-            x2 - r1,y2,     
-            x1 + r1,y2,
-            x1 + r1,y2,
-            x1,y2,
-            #--------------------
-            x1,y2 - r1,
-            x1,y2 - r1,
-            x1,y1 + r1,
-            x1,y1 + r1,
-            x1,y1,
-            )
+                dcanvas.coords("rcd_polygen_pr2",x1 +r1,y1,
+                x1 + r1,y1,
+                x2 - r1,y1,
+                x2 - r1,y1,     
+                x2,y1,     
+                #--------------------
+                x2,y1 + r1,     
+                x2,y1 + r1,     
+                x2,y2 - r1,     
+                x2,y2 - r1,     
+                x2,y2,
+                #--------------------
+                x2 - r1,y2,     
+                x2 - r1,y2,     
+                x1 + r1,y2,
+                x1 + r1,y2,
+                x1,y2,
+                #--------------------
+                x1,y2 - r1,
+                x1,y2 - r1,
+                x1,y1 + r1,
+                x1,y1 + r1,
+                x1,y1,
+                )
+                dcanvas.coords("price_val_lbl",dwidth/1.5,dheight/3,)
+                dcanvas.coords("enter_txt_lbl",dwidth/2.3,dheight/2.4,)
+                dcanvas.coords("enter_txt_entry",dwidth/2.3,dheight/2.1,)
+                dcanvas.coords("payment_lbl_date",dwidth/2.3,dheight/1.9,)
+                dcanvas.coords("amt_lbl",dwidth/2.3,dheight/1.5,)
+                dcanvas.coords("amt_entry",dwidth/2.3,dheight/1.4,)
+                dcanvas.coords("memo_lbl",dwidth/2.3,dheight/1.3,)
+                dcanvas.coords("memo_entry",dwidth/2.3,dheight/1.2,)
+                dcanvas.coords("submit_frm_btn",dwidth/2.3,dheight/1,)
+                dcanvas.coords("img_label",dwidth/26,dheight/2.5,)
+                
+            except:
+                dcanvas.coords("payment_date_entry",dwidth/2.3,dheight/1.7,)
+                    
+          
 
         new_canvas4= Canvas(gs,height=700,bg="#2f516f",scrollregion=(0,0,700,1200))
         sr_Scroll4 = Scrollbar(gs,orient=VERTICAL)
@@ -1687,6 +1705,42 @@ def main_sign_in():
         record_pa_lbl=Label(new_canvas4, text="RECORD PAYMENTS",bg="#213b52", fg="White", anchor="nw",font=('Calibri 25 bold'))
         record_pay_lbl_place=new_canvas4.create_window(0, 0, anchor="nw", window=record_pa_lbl, tag=("record_pa_lbl"))
         new_canvas4.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,smooth=True,fill="#1b3857",tags=("rcd_polygen_pr2"))
+
+        price_val_lbl=Label(new_canvas4, text="₹0.0",bg="#213b52", fg="White", anchor="nw",font=('Calibri 25 bold'))
+        price_val_lbl_place=new_canvas4.create_window(0, 0, anchor="nw", window=price_val_lbl, tag=("price_val_lbl"))
+
+        enter_txt_lbl=Label(new_canvas4, text="Enter text",bg="#213b52", fg="White", anchor="nw",font=('Calibri 15 '))
+        enter_txt_entry=Entry(new_canvas4,width=100,)
+        enter_txt_lbl_place=new_canvas4.create_window(0, 0, anchor="nw", window=enter_txt_lbl, tag=("enter_txt_lbl"))
+        enter_txt_entry_place=new_canvas4.create_window(0, 0, anchor="nw", window=enter_txt_entry, tag=("enter_txt_entry"))
+        
+        payment_lbl_date=Label(new_canvas4, text="Payment date",bg="#213b52", fg="White", anchor="nw",font=('Calibri 15 '))
+        payment_lbl_date_place=new_canvas4.create_window(0, 0, anchor="nw", window=payment_lbl_date, tag=("payment_lbl_date"))
+        
+
+        amt_lbl=Label(new_canvas4, text="Amount",bg="#213b52", fg="White", anchor="nw",font=('Calibri 15'))
+        amt_lbl_place=new_canvas4.create_window(0, 0, anchor="nw", window=amt_lbl, tag=("amt_lbl"))
+        amt_entry=Entry(new_canvas4,width=100,)
+        amt_entry_place=new_canvas4.create_window(0, 0, anchor="nw", window=amt_entry, tag=("amt_entry"))
+
+        memo_lbl=Label(new_canvas4, text="Memo",bg="#213b52", fg="White", anchor="nw",font=('Calibri 15'))  
+        memo_lbl_place=new_canvas4.create_window(0, 0, anchor="nw", window=memo_lbl, tag=("memo_lbl"))
+        memo_entry=scrolledtext.ScrolledText(new_canvas4, width = 73, height = 4)
+        memo_entry_place=new_canvas4.create_window(0, 0, anchor="nw", window=memo_entry, tag=("memo_entry"))
+
+        submit_frm_btn=Button(new_canvas4,text="Submit Form",bg="#673ab7",fg='white',width=88,height=2)
+        submit_frm_btn_place=new_canvas4.create_window(0, 0, anchor="nw", window=submit_frm_btn, tag=("submit_frm_btn"))
+
+        # image 
+        my_pic=Image.open("creditcardbillpayment.png")
+        resize=my_pic.resize((490,460),Image.ANTIALIAS)
+        photo = ImageTk.PhotoImage(resize)
+        img_label = Label(new_canvas4, image=photo,)
+        img_label.photo = photo
+        img_lbl_entry_place=new_canvas4.create_window(0, 0, anchor="nw", window=img_label, tag=("img_label"))
+
+        payment_date_entry=DateEntry(new_canvas4,selectmode='day')
+        payment_date_entry_place=new_canvas4.create_window(0, 0, anchor="nw", window=payment_date_entry, tag=("payment_date_entry"))
 
     # record payment button 
     recd_pay=Button(f2,text="Record payment",bg='yellow',command=rcdpay)
