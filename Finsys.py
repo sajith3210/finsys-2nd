@@ -1524,13 +1524,13 @@ def main_sign_in():
     # Return payment history tab menu 
     s = ttk.Style()
     s.theme_use('default')
-    s.configure('TNotebook.Tab', background="#213b52",foreground="white",anchor="center", padding=5)
-    s.map('TNotebook.Tab',background=[("selected","#2f516f")])
-    nb=ttk.Notebook(gst_canvas,)
+    s.configure('C.TNotebook.Tab',width=10, background="#213b52",foreground="white",anchor="center", padding=5)
+    s.map('C.TNotebook.Tab',background=[("selected","#2f516f")])
+    nb=ttk.Notebook(gst_canvas,style="C.TNotebook.Tab")
 
     
-    f1=Frame(gst_canvas,bg="red",width=400,height=1500)   #386491
-    f2=Frame(gst_canvas,bg="red",width=400,height=1500)
+    f1=Frame(gst_canvas,width=500,bg="#396591",highlightthickness=0)   #386491
+    f2=Frame(gst_canvas,width=500,bg="#396591",highlightthickness=0)
     
     nb.add(f1,text="Payment history")
     nb.add(f2,text="Returns")
@@ -1545,7 +1545,7 @@ def main_sign_in():
 
    
     #Returns tab
-    my_tree=ttk.Treeview(f1)
+    my_tree=ttk.Treeview(f1,height=12)
     
     # DEFINE COLUMN 
     my_tree['columns']=('STARTDATE','END DATE','PAYMENT DUE','ANNUAL DUE','PAYMENTS','BALANCE','STATUS')
@@ -1584,11 +1584,11 @@ def main_sign_in():
 
     #format our columns
     my_tree2.column("#0",width=0,stretch=NO)
-    my_tree2.column("DATE",anchor=CENTER,width=175,)
-    my_tree2.column('TYPE',anchor=CENTER,width=175)
-    my_tree2.column('TAX PERIOD',anchor=CENTER,width=175)
-    my_tree2.column('AMOUNT',anchor=CENTER,width=175)
-    my_tree2.column('MEMO',anchor=CENTER,width=175)
+    my_tree2.column("DATE",anchor=CENTER,width=245,)
+    my_tree2.column('TYPE',anchor=CENTER,width=245)
+    my_tree2.column('TAX PERIOD',anchor=CENTER,width=245)
+    my_tree2.column('AMOUNT',anchor=CENTER,width=245)
+    my_tree2.column('MEMO',anchor=CENTER,width=245)
 
          #Create Heading
     my_tree2.heading("#0",text='',anchor=CENTER)
@@ -1610,13 +1610,12 @@ def main_sign_in():
             dcanvas = event.widget
 
             # rcd polygon pr start 
-            r1 = 25
-            x1 = dwidth/63
-            x2 = dwidth/1.021
-            y1 = dheight/13
-            y2 = dheight/4           
-
             try:
+                r1 = 25
+                x1 = dwidth/63
+                x2 = dwidth/1.021
+                y1 = dheight/13
+                y2 = dheight/4           
                 dcanvas.coords("rcd_polygen_pr",x1 +r1,y1,
                 x1 + r1,y1,
                 x2 - r1,y1,
@@ -1686,7 +1685,11 @@ def main_sign_in():
                 dcanvas.coords("img_label",dwidth/26,dheight/2.5,)
                 
             except:
+                pass
+            try:
                 dcanvas.coords("payment_date_entry",dwidth/2.3,dheight/1.7,)
+            except:
+                pass
                     
           
 
@@ -1743,8 +1746,8 @@ def main_sign_in():
         payment_date_entry_place=new_canvas4.create_window(0, 0, anchor="nw", window=payment_date_entry, tag=("payment_date_entry"))
 
     # record payment button 
-    recd_pay=Button(f2,text="Record payment",bg='yellow',command=rcdpay)
-    recd_pay.grid(row=0,column=1, padx=50,pady=0)
+    recd_pay=Button(f2,text="Record payment",bg='#143250',fg='white',font=('calibri',12), command=rcdpay)
+    recd_pay.grid(row=0,column=1,ipadx=200,)
     
     
     # my_tree_place=gst_canvas.create_window(0,0,anchor='nw', window=my_tree,tag=('my_tree'))
