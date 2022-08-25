@@ -1446,47 +1446,8 @@ def main_sign_in():
         x1,y1,
         ) 
         dcanvas.coords("add_new_tax_lbl",dwidth/2.3,dheight/9,)
-
-#  tax_bg_polygen_pr3 start 
-        # r1 = 25
-        # x1 = dwidth/63
-        # x2 = dwidth/1.021
-        # y1 = dheight/13
-        # y2 = dheight/4 
-
-
-    
-        r1 = 25
-        x1 = dwidth/63
-        x2 = dwidth/1.021
-        y1 = dheight/13
-        y2 = dheight/6            #bg_polygen_pr
-
-        dcanvas.coords("bg_polygen_pr",x1 +r1,y1,
-        x1 + r1,y1,
-        x2 - r1,y1,
-        x2 - r1,y1,     
-        x2,y1,     
-        #--------------------
-        x2,y1 + r1,     
-        x2,y1 + r1,     
-        x2,y2 - r1,     
-        x2,y2 - r1,     
-        x2,y2,
-        #--------------------
-        x2 - r1,y2,     
-        x2 - r1,y2,     
-        x1 + r1,y2,
-        x1 + r1,y2,
-        x1,y2,
-        #--------------------
-        x1,y2 - r1,
-        x1,y2 - r1,
-        x1,y1 + r1,
-        x1,y1 + r1,
-        x1,y1,
-        )                           
-        dcanvas.coords("record_pay_lbl",dwidth/2.3,dheight/1,)
+                         
+        
    
 
     gst_canvas = Canvas(gs,height=700,bg="#386491",scrollregion=(0,0,700,1200))
@@ -1642,6 +1603,75 @@ def main_sign_in():
         print("function work") 
         gst_canvas.pack_forget()
         gst_sr_Scroll.pack_forget()
+        def responsive_wid(event):
+            dwidth = event.width
+            dheight = event.height
+            dcanvas = event.widget
+
+            # rcd polygon pr start 
+            r1 = 25
+            x1 = dwidth/63
+            x2 = dwidth/1.021
+            y1 = dheight/13
+            y2 = dheight/4           
+
+            dcanvas.coords("rcd_polygen_pr",x1 +r1,y1,
+            x1 + r1,y1,
+            x2 - r1,y1,
+            x2 - r1,y1,     
+            x2,y1,     
+            #--------------------
+            x2,y1 + r1,     
+            x2,y1 + r1,     
+            x2,y2 - r1,     
+            x2,y2 - r1,     
+            x2,y2,
+            #--------------------
+            x2 - r1,y2,     
+            x2 - r1,y2,     
+            x1 + r1,y2,
+            x1 + r1,y2,
+            x1,y2,
+            #--------------------
+            x1,y2 - r1,
+            x1,y2 - r1,
+            x1,y1 + r1,
+            x1,y1 + r1,
+            x1,y1,
+            )  
+            dcanvas.coords("record_pa_lbl",dwidth/2.3,dheight/9,)
+             # rcd polygon pr 2 start 
+            r1 = 25
+            x1 = dwidth/63
+            x2 = dwidth/1.021
+            y1 = dheight/3.4
+            y2 = dheight/0.79           
+
+            dcanvas.coords("rcd_polygen_pr2",x1 +r1,y1,
+            x1 + r1,y1,
+            x2 - r1,y1,
+            x2 - r1,y1,     
+            x2,y1,     
+            #--------------------
+            x2,y1 + r1,     
+            x2,y1 + r1,     
+            x2,y2 - r1,     
+            x2,y2 - r1,     
+            x2,y2,
+            #--------------------
+            x2 - r1,y2,     
+            x2 - r1,y2,     
+            x1 + r1,y2,
+            x1 + r1,y2,
+            x1,y2,
+            #--------------------
+            x1,y2 - r1,
+            x1,y2 - r1,
+            x1,y1 + r1,
+            x1,y1 + r1,
+            x1,y1,
+            )
+
         new_canvas4= Canvas(gs,height=700,bg="#2f516f",scrollregion=(0,0,700,1200))
         sr_Scroll4 = Scrollbar(gs,orient=VERTICAL)
         sr_Scroll4.pack(fill=Y,side="right")
@@ -1650,12 +1680,15 @@ def main_sign_in():
         new_canvas4.config(yscrollcommand=sr_Scroll4.set)
         new_canvas4.pack(fill=X)
         # new_canvas4.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, fill="#1b3857",tags=("rcd_polygen_pr"),smooth=True,)
-        record_pay_lbl=Label(new_canvas4, text="ADD NEW TAX",bg="#213b52", fg="White", anchor="nw",font=('Calibri 25 bold'))
-        record_pay_lbl_place=new_canvas4.create_window(0, 0, anchor="nw", window=record_pay_lbl, tag=("record_pay_lbl"))
-        tab7_1.grid_columnconfigure(0,weight=1)
-        tab7_1.grid_rowconfigure(0,weight=1)
+        
+        # tab7_1.grid_columnconfigure(0,weight=1)
+        # tab7_1.grid_rowconfigure(0,weight=1)
         new_canvas4.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,smooth=True,fill="#1b3857",tags=("rcd_polygen_pr"))
+        record_pa_lbl=Label(new_canvas4, text="RECORD PAYMENTS",bg="#213b52", fg="White", anchor="nw",font=('Calibri 25 bold'))
+        record_pay_lbl_place=new_canvas4.create_window(0, 0, anchor="nw", window=record_pa_lbl, tag=("record_pa_lbl"))
+        new_canvas4.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,smooth=True,fill="#1b3857",tags=("rcd_polygen_pr2"))
 
+    # record payment button 
     recd_pay=Button(f2,text="Record payment",bg='yellow',command=rcdpay)
     recd_pay.grid(row=0,column=1, padx=50,pady=0)
     
