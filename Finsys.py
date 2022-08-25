@@ -1454,13 +1454,15 @@ def main_sign_in():
         # y1 = dheight/13
         # y2 = dheight/4 
 
+
+    
         r1 = 25
         x1 = dwidth/63
         x2 = dwidth/1.021
         y1 = dheight/13
         y2 = dheight/6            #bg_polygen_pr
 
-        dcanvas.coords("rcd_polygen_pr",x1 +r1,y1,
+        dcanvas.coords("bg_polygen_pr",x1 +r1,y1,
         x1 + r1,y1,
         x2 - r1,y1,
         x2 - r1,y1,     
@@ -1483,7 +1485,7 @@ def main_sign_in():
         x1,y1 + r1,
         x1,y1 + r1,
         x1,y1,
-        )          
+        )                           
         dcanvas.coords("record_pay_lbl",dwidth/2.3,dheight/1,)
    
 
@@ -1530,9 +1532,11 @@ def main_sign_in():
 
         save_btn=Button(new_canvas3,text="Save",bg="#213b52",fg='white',width=25,)
         save_btn_place=new_canvas3.create_window(0, 0, anchor="nw", window=save_btn, tag=("save_btn"))
-
-        img_tax=ImageTk.PhotoImage(Image.open("TAX.PNG"))
-        img_label=Label(new_canvas3,image=img_tax,width=300,height=300,)
+        my_pic=Image.open("TAX.png")
+        resize=my_pic.resize((490,330),Image.ANTIALIAS)
+        photo = ImageTk.PhotoImage(resize)
+        img_label = Label(new_canvas3, image=photo,)
+        img_label.photo = photo
         img_lbl_entry_place=new_canvas3.create_window(0, 0, anchor="nw", window=img_label, tag=("img_label"))
     #Addtx button
     addtxbtn=Button(gst_canvas,text="Add tax",bg="#213b52",fg='white',width=10,command=addtx)
@@ -1569,6 +1573,15 @@ def main_sign_in():
     nb.add(f1,text="Payment history")
     nb.add(f2,text="Returns")
 
+
+    styletree = ttk.Style()
+    styletree.theme_use("default")
+    styletree.configure("Treeview", background="#2f516f", foreground="white",fieldbackground="#2f516f",rowheight=25,font=(None,11))
+    styletree.configure("Treeview.Heading",background="#1b3857",activeforeground="black",foreground="white",font=(None,11))  
+
+                    
+
+   
     #Returns tab
     my_tree=ttk.Treeview(f1)
     
@@ -1636,9 +1649,13 @@ def main_sign_in():
         new_canvas4.bind("<Configure>", responsive_wid)
         new_canvas4.config(yscrollcommand=sr_Scroll4.set)
         new_canvas4.pack(fill=X)
-        new_canvas4.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, fill="#213b52",tags=("rcd_polygen_pr"),smooth=True,)
+        # new_canvas4.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, fill="#1b3857",tags=("rcd_polygen_pr"),smooth=True,)
         record_pay_lbl=Label(new_canvas4, text="ADD NEW TAX",bg="#213b52", fg="White", anchor="nw",font=('Calibri 25 bold'))
         record_pay_lbl_place=new_canvas4.create_window(0, 0, anchor="nw", window=record_pay_lbl, tag=("record_pay_lbl"))
+        tab7_1.grid_columnconfigure(0,weight=1)
+        tab7_1.grid_rowconfigure(0,weight=1)
+        new_canvas4.create_polygon(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,smooth=True,fill="#1b3857",tags=("rcd_polygen_pr"))
+
     recd_pay=Button(f2,text="Record payment",bg='yellow',command=rcdpay)
     recd_pay.grid(row=0,column=1, padx=50,pady=0)
     
