@@ -1747,7 +1747,7 @@ def main_sign_in():
 
     # record payment button 
     recd_pay=Button(f2,text="Record payment",bg='#143250',fg='white',font=('calibri',12), command=rcdpay)
-    recd_pay.grid(row=0,column=1,ipadx=200,)
+    recd_pay.grid(row=0,column=1,)
     
     
     # my_tree_place=gst_canvas.create_window(0,0,anchor='nw', window=my_tree,tag=('my_tree'))
